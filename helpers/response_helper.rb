@@ -22,8 +22,8 @@ module Sinatra
             image = Rszr::Image.load_data(uri.open.read)
             image.format = "png"
             if params[:width] && params[:height] && params[:width] == params[:height]
-               width = params[:width].to_i
-               height = params[:height].to_i
+               width = [image.width, params[:width].to_i].min
+               height = [image.height, params[:height].to_i].min
                image.resize!(width, height, crop: :center)
             elsif params[:width] && params[:width].to_i < image.width && !params[:height]
                image.resize!(params[:width].to_i, :auto)
