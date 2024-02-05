@@ -10,19 +10,15 @@ module Sinatra
          exit
        end
 
-       def cached_image(hex:)
+       def get_image(hex:)
          content_type "image/png"
          send_file "public/#{hex}.png", type: :png
          exit
        end
 
-       def cache_image(params:, hex:)
-         url = params[:src]
-         if params[:url_encoded]
-            url = CGI.unescapeURIComponent(params[:src])
-         end
-
+       def save_image(params:, hex:)
          begin
+            url = CGI.unescapeURIComponent(params[:src])
             uri = URI.parse(URI::Parser.new.escape(url))
             Tempfile.create do |f|
                f.binmode
@@ -41,10 +37,9 @@ module Sinatra
                image.save("public/#{hex}.png")
                send_file "public/#{hex}.png", type: :png
             end
-         rescue OpenURI::HTTPError => e
+         rescue
             nil_image
-         end
-         
+         end 
        end
 
      end
