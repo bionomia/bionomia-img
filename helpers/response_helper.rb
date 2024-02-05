@@ -21,8 +21,9 @@ module Sinatra
          if params[:url_encoded]
             url = CGI.unescapeURIComponent(params[:src])
          end
+
          begin
-            uri = URI.parse url
+            uri = URI.parse(URI::Parser.new.escape(url))
             Tempfile.create do |f|
                f.binmode
                f << uri.open.read
