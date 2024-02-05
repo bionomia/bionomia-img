@@ -16,9 +16,9 @@ module Sinatra
        end
 
        def save_image(params:, hex:)
+         url = CGI.unescapeURIComponent(params[:src])
+         uri = URI.parse(URI::Parser.new.escape(url))
          begin
-            url = CGI.unescapeURIComponent(params[:src])
-            uri = URI.parse(URI::Parser.new.escape(url))
             image = Rszr::Image.load_data(uri.open.read)
             image.format = "png"
             if params[:width] && params[:height] && params[:width] == params[:height]
@@ -32,6 +32,8 @@ module Sinatra
             end
             image.save("public/#{hex}.png")
             send_file "public/#{hex}.png", type: :png
+         rescue Rszr::LoadError => e
+            redirect uri.to_s
          rescue
             nil_image
          end
