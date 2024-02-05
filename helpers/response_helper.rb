@@ -19,25 +19,19 @@ module Sinatra
          begin
             url = CGI.unescapeURIComponent(params[:src])
             uri = URI.parse(URI::Parser.new.escape(url))
-            Tempfile.create do |f|
-               f.binmode
-               f << uri.open.read
-               image = Rszr::Image.load(f.path)
-               image.format = "png"
-               if params[:width] && params[:height] && params[:width] == params[:height]
-                  width = params[:width].to_i
-                  height = params[:height].to_i
-                  image.resize!(width, height, crop: :center)
-               elsif params[:width] && !params[:height]
-                  image.resize!(params[:width].to_i, :auto)
-               elsif params[:height] && !params[:width]
-                  image.resize!(:auto, params[:height].to_i)
-               end
-               image.save("public/#{hex}.png")
-               send_file "public/#{hex}.png", type: :png
+            image = Rszr::Image.load_data(uri.open.read)
+            image.format = "png"
+            if params[:width] && params[:height] && params[:width] == params[:height]
+               width = params[:width].to_i
+               height = params[:height].to_i
+               image.resize!(width, height, crop: :center)
+            elsif params[:width] && !params[:height]
+               image.resize!(params[:width].to_i, :auto)
+            elsif params[:height] && !params[:width]
+               image.resize!(:auto, params[:height].to_i)
             end
-         rescue Rszr::LoadError => e
-            redirect uri.to_s
+            image.save("public/#{hex}.png")
+            send_file "public/#{hex}.png", type: :png
          rescue
             nil_image
          end

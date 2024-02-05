@@ -11,8 +11,8 @@ require 'rack'
 require 'rack/contrib'
 require 'rszr'
 
-Encoding.default_internal = Encoding::UTF_8
-Encoding.default_external = Encoding::UTF_8
+OpenURI::Buffer.send :remove_const, 'StringMax' if OpenURI::Buffer.const_defined?('StringMax')
+OpenURI::Buffer.const_set 'StringMax', -1
 
 require_all File.join(File.dirname(__FILE__), 'helpers')
 require_all File.join(File.dirname(__FILE__), 'routes')
