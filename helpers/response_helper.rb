@@ -13,7 +13,6 @@ module Sinatra
        def get_image(hex:)
          content_type "image/png"
          send_file "public/#{hex}.png", type: :png
-         exit
        end
 
        def save_image(params:, hex:)
@@ -37,9 +36,11 @@ module Sinatra
                image.save("public/#{hex}.png")
                send_file "public/#{hex}.png", type: :png
             end
+         rescue Rszr::LoadError => e
+            redirect uri.to_s
          rescue
             nil_image
-         end 
+         end
        end
 
      end
