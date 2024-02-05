@@ -1,17 +1,12 @@
 require 'bundler'
 require 'digest'
 require 'sinatra/base'
-require 'sinatra/multi_route'
-require 'config'
 require 'open-uri'
 require 'thin'
 require 'require_all'
 require 'uri'
-require 'net/http'
 require 'rack'
 require 'rack/contrib'
-require 'rack/protection'
-require 'faraday/typhoeus'
 require 'rszr'
 
 Encoding.default_internal = Encoding::UTF_8

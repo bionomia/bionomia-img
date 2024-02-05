@@ -17,3 +17,4 @@ config/settings/production.yml
 metastore_db
 derby.log
 tmp
+public/*
