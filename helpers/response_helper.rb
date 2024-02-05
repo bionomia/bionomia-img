@@ -6,11 +6,10 @@ module Sinatra
  
        def nil_image
          content_type "image/png"
-         send_file "public/1x1.png", type: :png
+         send_file "public/system/1x1.png", type: :png
          exit
        end
- 
-       #TODO: cache response somehow
+
        def cached_image(hex:)
          content_type "image/png"
          send_file "public/#{hex}.png", type: :png
@@ -18,9 +17,12 @@ module Sinatra
        end
 
        def cache_image(params:, hex:)
-         unescaped = CGI.unescapeURIComponent(params[:src])
-         uri = URI.parse(unescaped.gsub(" ", "%20"))
+         url = params[:src]
+         if params[:url_encoded]
+            url = CGI.unescapeURIComponent(params[:src])
+         end
          begin
+            uri = URI.parse url
             Tempfile.create do |f|
                f.binmode
                f << uri.open.read
