@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 ruby '3.2.1'
 
 gem 'digest'
+gem 'cgi'
 gem 'open-uri'
 gem 'rack-contrib'
 gem 'rack-test'

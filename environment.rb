@@ -1,4 +1,5 @@
 require 'bundler'
+require 'cgi'
 require 'digest'
 require 'sinatra/base'
 require 'open-uri'

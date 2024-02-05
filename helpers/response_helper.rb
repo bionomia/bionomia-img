@@ -18,7 +18,8 @@ module Sinatra
        end
 
        def cache_image(params:, hex:)
-         uri = URI.parse params[:src]
+         unescaped = CGI.unescapeURIComponent(params[:src])
+         uri = URI.parse(unescaped.gsub(" ", "%20"))
          begin
             Tempfile.create do |f|
                f.binmode
