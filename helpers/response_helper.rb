@@ -6,7 +6,7 @@ module Sinatra
  
        def nil_image
          content_type "image/png"
-         send_file "public/system/1x1.png", type: :png
+         send_file "system/1x1.png", type: :png
          exit
        end
 
