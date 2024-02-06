@@ -25,9 +25,11 @@ module Sinatra
                width = [image.width, params[:width].to_i].min
                height = [image.height, params[:height].to_i].min
                image.resize!(width, height, crop: :center)
-            elsif params[:width] && params[:width].to_i < image.width && !params[:height]
+            elsif params[:width] && params[:height] && params[:width] != params[:height]
+               image.resize!(params[:width].to_i, params[:height].to_i, crop: :center)
+            elsif params[:width] && !params[:height] && params[:width].to_i < image.width
                image.resize!(params[:width].to_i, :auto)
-            elsif params[:height] && params[:height].to_i < image.height && !params[:width]
+            elsif params[:height] && !params[:width] && params[:height].to_i < image.height
                image.resize!(:auto, params[:height].to_i)
             end
             image.save("public/#{hex}.png")
