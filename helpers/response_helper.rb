@@ -22,7 +22,7 @@ module Sinatra
             image = Rszr::Image.load_data(uri.open.read)
             image.format = "png"
             if params[:grey]
-               image.desaturate
+               image.desaturate!
             end
             if params[:width] && params[:height] && params[:width] == params[:height]
                width = [image.width, params[:width].to_i].min
