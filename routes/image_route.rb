@@ -2,7 +2,7 @@
 
 module Sinatra
    module BionomiaImg
-      module ImageController
+      module ImageRoute
 
          def self.registered(app)
             app.get '/' do

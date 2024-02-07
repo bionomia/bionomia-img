@@ -8,7 +8,7 @@ class BIONOMIAIMG < Sinatra::Base
   set :public_folder, 'public'
   set :show_exceptions, false
 
-  register Sinatra::BionomiaImg::ImageController
+  register Sinatra::BionomiaImg::ImageRoute
 
   helpers Sinatra::BionomiaImg::ResponseHelper
 
