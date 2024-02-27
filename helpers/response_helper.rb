@@ -44,6 +44,14 @@ module Sinatra
          end
        end
 
+      def flush_image(hex:)
+         begin
+            FileUtils.rm("public/#{hex}.png")
+         rescue
+            nil
+         end
+      end
+
      end
    end
  end

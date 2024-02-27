@@ -8,6 +8,9 @@ module Sinatra
             app.get '/' do
                nil_image if !params[:src]
                hex = Digest::MD5.hexdigest(params.to_s)
+               if params[:flush]
+                  flush_image(hex: hex)
+               end
                if File.exist?(File.join("public", "#{hex}.png"))
                   get_image(hex: hex)
                else
