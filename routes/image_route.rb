@@ -7,8 +7,9 @@ module Sinatra
          def self.registered(app)
             app.get '/' do
                nil_image if !params[:src]
+               flush = params.delete("flush")
                hex = Digest::MD5.hexdigest(params.to_s)
-               if params[:flush]
+               if flush
                   flush_image(hex: hex)
                end
                if File.exist?(File.join("public", "#{hex}.png"))
