@@ -22,7 +22,7 @@ module Sinatra
             app.delete '/etag/:hex' do
                if params[:hex] && 
                   params[:hex].length == 32 && 
-                  File.exist?(File.join("public", "#{hex}.png"))
+                  File.exist?(File.join("public", "#{params[:hex]}.png"))
                      flush_image(hex: params[:hex])
                      halt 410, "File is gone"
                else
