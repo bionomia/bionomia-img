@@ -16,7 +16,7 @@ GEM
       stringio
       time
       uri
-    passenger (6.0.20)
+    passenger (6.0.22)
       rack
       rake (>= 0.8.1)
     rack (2.2.9)
@@ -38,7 +38,7 @@ GEM
     rspec-expectations (3.13.0)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
-    rspec-mocks (3.13.0)
+    rspec-mocks (3.13.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.13.0)
     rspec-support (3.13.1)
