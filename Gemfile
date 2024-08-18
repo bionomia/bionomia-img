@@ -10,7 +10,6 @@ gem 'require_all'
 gem 'rszr'
 gem 'sinatra'
 gem 'sinatra-contrib'
-gem 'thin'
 
 group :production do
   gem 'passenger'
