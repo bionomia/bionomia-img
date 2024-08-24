@@ -8,6 +8,7 @@ gem 'rack-contrib'
 gem 'rack-test'
 gem 'require_all'
 gem 'rszr'
+gem 'mustermann', '3.0.1'
 gem 'sinatra'
 gem 'sinatra-contrib'
 
