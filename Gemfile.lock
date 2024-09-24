@@ -65,7 +65,7 @@ GEM
     time (0.4.0)
       date
     uri (0.13.1)
-    webrick (1.8.1)
+    webrick (1.8.2)
 
 PLATFORMS
   x86_64-darwin-23
