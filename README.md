@@ -5,5 +5,5 @@ Sinatra app to manipulate images in use for Bionomia, which itself is used to pa
 
 ## Development Requirements
 
-1. ruby 3.2.1+
+1. ruby 3.3.6+
 2. requirements for `rszr` gem, [https://github.com/mtgrosser/rszr](https://github.com/mtgrosser/rszr)
