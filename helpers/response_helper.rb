@@ -21,7 +21,7 @@ module Sinatra
          url = CGI.unescapeURIComponent(params[:src])
          uri = URI.parse(URI::Parser.new.escape(url))
          begin
-            image = Rszr::Image.load_data(uri.open.read, autorotate: true)
+            image = Rszr::Image.load_data(uri.open("User-Agent" => "Bionomia (https://bionomia.net)").read, autorotate: true)
             image.format = "png"
             if params[:grey]
                image.desaturate!
